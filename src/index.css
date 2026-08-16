@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #09090b; /* Solid Dark Zinc */
+    color: #f4f4f5;
+  }
+}
+
+/* Custom Scrollbar - Clean & Minimal */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Minimal Flat Cards */
+.clean-card {
+  background-color: #121215;
+  border: 1px solid #27272a;
+}
+
+.clean-card-hover {
+  transition: all 0.15s ease-in-out;
+}
+.clean-card-hover:hover {
+  background-color: #18181b;
+  border-color: #3f3f46;
+}
