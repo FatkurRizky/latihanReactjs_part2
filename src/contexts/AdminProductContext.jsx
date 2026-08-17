@@ -31,7 +31,7 @@ export function AdminProductProvider({ children }) {
     const [products, setProducts] = useState([])
     const [categories, setCategories] = useState(DEFAULT_CATEGORIES);
     const [searchTerm, setSearchTerm] = useState('');
-    const [selectedCategory, setSelectedCategory] = useState(DEFAULT_CATEGORIES)
+    const [selectedCategory, setSelectedCategory] = useState('ALL')
     const [imageFile, setImageFile] = useState(null);
     const [imagePreview, setImagePreview] = useState(null)
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -93,8 +93,13 @@ export function AdminProductProvider({ children }) {
     }
 
     useEffect(() => {
-        fetchProducts();
-        fetchCategories();
+
+        const loadData = async () => {
+            await fetchProducts();
+            await fetchCategories();
+        }
+
+        loadData()
     }, [])
 
 
@@ -121,7 +126,7 @@ export function AdminProductProvider({ children }) {
 
             setImagePreview(product.image_url || null);
         } else {
-            setFormData({ id: null, name: '', price: '', cost_price: '', stock: '', unit: 'pcs', category_id: '' })
+            setFormData(INITIAL_FORM)
         }
 
         setImageFile(null);
@@ -258,7 +263,7 @@ export function AdminProductProvider({ children }) {
 
 
     return (
-        <AdminProductContext.Provider value={{main}}>
+        <AdminProductContext.Provider value={{ handleSave, handleDelete, handleImageChange, handleImportCsv, fetchProducts, fetchCategories, showAlert, products, selectedCategory, categories, searchTerm, setSearchTerm, showForm, isSubmitting, formData, imagePreview, fileInputRef, csvInputRef, openForm, closeForm, closeAlert, alertModal, filterProduct, setSelectedCategory, setFormData }}>
             {children}
         </AdminProductContext.Provider>
     )

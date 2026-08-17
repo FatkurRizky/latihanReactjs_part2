@@ -4,6 +4,7 @@ import Admin from './pages/Admin';
 import Login from './pages/Login';
 import History from './pages/History'; // <-- TAMBAHAN
 import axios from 'axios';
+import { AdminProductProvider } from './contexts/AdminProductContext';
 
 const token = localStorage.getItem('admin_token');
 if (token) {
@@ -24,7 +25,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Cashier />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
+        <Route path="/admin" element={<ProtectedRoute><AdminProductProvider> <Admin/></AdminProductProvider></ProtectedRoute>} />
         <Route path="/history" element={<ProtectedRoute><History /></ProtectedRoute>} />
       </Routes>
     </BrowserRouter>
