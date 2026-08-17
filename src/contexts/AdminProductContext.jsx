@@ -93,8 +93,13 @@ export function AdminProductProvider({ children }) {
     }
 
     useEffect(() => {
-        fetchProducts();
-        fetchCategories();
+
+        const loadData = async () => {
+            await fetchProducts();
+            await fetchCategories();
+        }
+
+        loadData()
     }, [])
 
 
@@ -258,7 +263,7 @@ export function AdminProductProvider({ children }) {
 
 
     return (
-        <AdminProductContext.Provider value={{handleSave, handleDelete, handleImageChange, handleImportCsv, fetchProducts, fetchCategories, showAlert, products,  selectedCategory, categories, searchTerm,setSearchTerm, showForm, isSubmitting, formData, imagePreview, fileInputRef, csvInputRef, openForm, closeForm, closeAlert, alertModal, filterProduct, setSelectedCategory, setFormData}}>
+        <AdminProductContext.Provider value={{ handleSave, handleDelete, handleImageChange, handleImportCsv, fetchProducts, fetchCategories, showAlert, products, selectedCategory, categories, searchTerm, setSearchTerm, showForm, isSubmitting, formData, imagePreview, fileInputRef, csvInputRef, openForm, closeForm, closeAlert, alertModal, filterProduct, setSelectedCategory, setFormData }}>
             {children}
         </AdminProductContext.Provider>
     )
